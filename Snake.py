@@ -23,8 +23,8 @@ class Apple:
 	step = pixel
  
 	def __init__(self,x=5,y=5,offset=[0,0]):
-		self.x = x * self.step
-		self.y = y * self.step
+		self.x = x * pixel
+		self.y = y * pixel
 		self.offset=offset
  
 	def draw(self, surface, image):
@@ -119,8 +119,8 @@ class App:
 		for i in range (self.numPlayers): 
 			off=off1[i]
 			self.player.append(Player(offset=off)) 
-			self.apple.append(Apple(x=randint(1,math.floor(self.windowWidth /pixel) ),y=randint(1,math.floor(self.windowHeight /pixel) ),offset=off)) 
-
+			self.apple.append(Apple(x=randint(1,int(math.floor(self.windowWidth /pixel))-1 ),y=randint(1,int(math.floor(self.windowHeight /pixel))-1 ),offset=off)) 
+		print (int(math.floor(self.windowHeight /pixel) ))
 
 	def getStacked (self, resx=1366, resy=768, poljex=10, poljey=10):
 		out=[]
@@ -128,8 +128,8 @@ class App:
 		p1=math.floor(pixel*(resx/(math.ceil(math.sqrt(self.numPlayers) )*poljex*pixel) ) )
 		p2=math.floor(pixel*(resy/(math.ceil(math.sqrt(self.numPlayers) )*poljey*pixel) ) )
 		if p1<p2:
-			pixel=p1
-		else: pixel=p2
+			pixel=int(p1)
+		else: pixel=int(p2)
 		k=0
 		i=0
 		j=0
@@ -260,4 +260,4 @@ class App:
 				pass
 
 if __name__ == "__main__" :
-	theApp = App(draw=True, keys_control=True, numPlayers=1).on_execute()
+	theApp = App(draw=True, keys_control=True, numPlayers=3).on_execute()
